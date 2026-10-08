@@ -14,16 +14,295 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cart_items: {
+        Row: {
+          created_at: string
+          id: string
+          listing_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          listing_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          listing_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listings: {
+        Row: {
+          address: string
+          area_m2: number
+          contact_phone: string | null
+          created_at: string
+          deal: string
+          description: string
+          district: string
+          electricity_price: number
+          id: string
+          images: string[]
+          internet_price: number
+          kind: string
+          lat: number
+          lng: number
+          notes: string | null
+          owner_id: string | null
+          panorama_url: string | null
+          parking_price: number
+          price: number
+          rented_by: string | null
+          status: string
+          title: string
+          water_price: number
+        }
+        Insert: {
+          address: string
+          area_m2?: number
+          contact_phone?: string | null
+          created_at?: string
+          deal?: string
+          description?: string
+          district: string
+          electricity_price?: number
+          id?: string
+          images?: string[]
+          internet_price?: number
+          kind?: string
+          lat: number
+          lng: number
+          notes?: string | null
+          owner_id?: string | null
+          panorama_url?: string | null
+          parking_price?: number
+          price: number
+          rented_by?: string | null
+          status?: string
+          title: string
+          water_price?: number
+        }
+        Update: {
+          address?: string
+          area_m2?: number
+          contact_phone?: string | null
+          created_at?: string
+          deal?: string
+          description?: string
+          district?: string
+          electricity_price?: number
+          id?: string
+          images?: string[]
+          internet_price?: number
+          kind?: string
+          lat?: number
+          lng?: number
+          notes?: string | null
+          owner_id?: string | null
+          panorama_url?: string | null
+          parking_price?: number
+          price?: number
+          rented_by?: string | null
+          status?: string
+          title?: string
+          water_price?: number
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          listing_id: string | null
+          receiver_id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          listing_id?: string | null
+          receiver_id: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          listing_id?: string | null
+          receiver_id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          author_name: string
+          comment: string
+          created_at: string
+          id: string
+          listing_id: string
+          rating: number
+          user_id: string | null
+        }
+        Insert: {
+          author_name?: string
+          comment?: string
+          created_at?: string
+          id?: string
+          listing_id: string
+          rating: number
+          user_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          comment?: string
+          created_at?: string
+          id?: string
+          listing_id?: string
+          rating?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      roommate_profiles: {
+        Row: {
+          age: number
+          bio: string
+          budget: number
+          clean: number
+          contact: string | null
+          created_at: string
+          display_name: string
+          district: string
+          gender: string
+          occupation: string
+          pets: boolean
+          sleep: string
+          smoking: boolean
+          user_id: string
+        }
+        Insert: {
+          age?: number
+          bio?: string
+          budget?: number
+          clean?: number
+          contact?: string | null
+          created_at?: string
+          display_name: string
+          district: string
+          gender?: string
+          occupation?: string
+          pets?: boolean
+          sleep?: string
+          smoking?: boolean
+          user_id: string
+        }
+        Update: {
+          age?: number
+          bio?: string
+          budget?: number
+          clean?: number
+          contact?: string | null
+          created_at?: string
+          display_name?: string
+          district?: string
+          gender?: string
+          occupation?: string
+          pets?: boolean
+          sleep?: string
+          smoking?: boolean
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      book_listing: { Args: { _listing_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "landlord" | "tenant"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +429,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["landlord", "tenant"],
+    },
   },
 } as const
