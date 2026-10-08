@@ -5,7 +5,7 @@ import { FLOOD_ZONES } from "@/lib/flood";
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
 function Click({ onChange }: { onChange: (p: [number, number]) => void }) {
-  useMapEvents({ click: (e) => onChange([e.latlng.lat, e.latlng.lng]) });
+  useMapEvents({ click: (e: { latlng: { lat: number; lng: number } }) => onChange([e.latlng.lat, e.latlng.lng]) });
   return null;
 }
 
