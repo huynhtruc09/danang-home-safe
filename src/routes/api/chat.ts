@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/chat")({
         if (!messages.length) return new Response("Bad request", { status: 400 });
         const openai = createOpenAI({
           baseURL: "https://ai.gateway.lovable.dev/v1",
-          apiKey: process.env["LOVABLE_API_KEY"],
+          apiKey: process.env["LOVABLE_API_KEY"] ?? "",
           headers: { "Lovable-API-Key": process.env["LOVABLE_API_KEY"] ?? "", "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
         });
         const result = streamText({

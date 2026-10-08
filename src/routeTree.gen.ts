@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BanDoRouteImport } from './routes/ban-do'
 import { Route as DangTinRouteImport } from './routes/dang-tin'
 import { Route as GioHangRouteImport } from './routes/gio-hang'
+import { Route as OGhepRouteImport } from './routes/o-ghep'
 import { Route as TaiKhoanRouteImport } from './routes/tai-khoan'
+import { Route as TinNhanRouteImport } from './routes/tin-nhan'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as PhongIdRouteImport } from './routes/phong.$id'
 
@@ -37,9 +39,19 @@ const GioHangRoute = GioHangRouteImport.update({
   path: '/gio-hang',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OGhepRoute = OGhepRouteImport.update({
+  id: '/o-ghep',
+  path: '/o-ghep',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TaiKhoanRoute = TaiKhoanRouteImport.update({
   id: '/tai-khoan',
   path: '/tai-khoan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TinNhanRoute = TinNhanRouteImport.update({
+  id: '/tin-nhan',
+  path: '/tin-nhan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -58,7 +70,9 @@ export interface FileRoutesByFullPath {
   '/ban-do': typeof BanDoRoute
   '/dang-tin': typeof DangTinRoute
   '/gio-hang': typeof GioHangRoute
+  '/o-ghep': typeof OGhepRoute
   '/tai-khoan': typeof TaiKhoanRoute
+  '/tin-nhan': typeof TinNhanRoute
   '/api/chat': typeof ApiChatRoute
   '/phong/$id': typeof PhongIdRoute
 }
@@ -67,7 +81,9 @@ export interface FileRoutesByTo {
   '/ban-do': typeof BanDoRoute
   '/dang-tin': typeof DangTinRoute
   '/gio-hang': typeof GioHangRoute
+  '/o-ghep': typeof OGhepRoute
   '/tai-khoan': typeof TaiKhoanRoute
+  '/tin-nhan': typeof TinNhanRoute
   '/api/chat': typeof ApiChatRoute
   '/phong/$id': typeof PhongIdRoute
 }
@@ -77,7 +93,9 @@ export interface FileRoutesById {
   '/ban-do': typeof BanDoRoute
   '/dang-tin': typeof DangTinRoute
   '/gio-hang': typeof GioHangRoute
+  '/o-ghep': typeof OGhepRoute
   '/tai-khoan': typeof TaiKhoanRoute
+  '/tin-nhan': typeof TinNhanRoute
   '/api/chat': typeof ApiChatRoute
   '/phong/$id': typeof PhongIdRoute
 }
@@ -88,7 +106,9 @@ export interface FileRouteTypes {
     | '/ban-do'
     | '/dang-tin'
     | '/gio-hang'
+    | '/o-ghep'
     | '/tai-khoan'
+    | '/tin-nhan'
     | '/api/chat'
     | '/phong/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -97,7 +117,9 @@ export interface FileRouteTypes {
     | '/ban-do'
     | '/dang-tin'
     | '/gio-hang'
+    | '/o-ghep'
     | '/tai-khoan'
+    | '/tin-nhan'
     | '/api/chat'
     | '/phong/$id'
   id:
@@ -106,7 +128,9 @@ export interface FileRouteTypes {
     | '/ban-do'
     | '/dang-tin'
     | '/gio-hang'
+    | '/o-ghep'
     | '/tai-khoan'
+    | '/tin-nhan'
     | '/api/chat'
     | '/phong/$id'
   fileRoutesById: FileRoutesById
@@ -116,7 +140,9 @@ export interface RootRouteChildren {
   BanDoRoute: typeof BanDoRoute
   DangTinRoute: typeof DangTinRoute
   GioHangRoute: typeof GioHangRoute
+  OGhepRoute: typeof OGhepRoute
   TaiKhoanRoute: typeof TaiKhoanRoute
+  TinNhanRoute: typeof TinNhanRoute
   ApiChatRoute: typeof ApiChatRoute
   PhongIdRoute: typeof PhongIdRoute
 }
@@ -151,11 +177,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GioHangRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/o-ghep': {
+      id: '/o-ghep'
+      path: '/o-ghep'
+      fullPath: '/o-ghep'
+      preLoaderRoute: typeof OGhepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tai-khoan': {
       id: '/tai-khoan'
       path: '/tai-khoan'
       fullPath: '/tai-khoan'
       preLoaderRoute: typeof TaiKhoanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tin-nhan': {
+      id: '/tin-nhan'
+      path: '/tin-nhan'
+      fullPath: '/tin-nhan'
+      preLoaderRoute: typeof TinNhanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -180,7 +220,9 @@ const rootRouteChildren: RootRouteChildren = {
   BanDoRoute: BanDoRoute,
   DangTinRoute: DangTinRoute,
   GioHangRoute: GioHangRoute,
+  OGhepRoute: OGhepRoute,
   TaiKhoanRoute: TaiKhoanRoute,
+  TinNhanRoute: TinNhanRoute,
   ApiChatRoute: ApiChatRoute,
   PhongIdRoute: PhongIdRoute,
 }

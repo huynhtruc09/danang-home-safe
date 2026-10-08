@@ -53,5 +53,5 @@ export function floodRiskAt(lat: number, lng: number): { level: FloodLevel; zone
       if (!best || rank[z.level] > rank[best.level]) best = z;
     }
   }
-  return { level: best?.level ?? "safe", zone: best };
+  return best ? { level: best.level, zone: best } : { level: "safe" };
 }

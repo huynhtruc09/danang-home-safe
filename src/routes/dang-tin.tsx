@@ -50,7 +50,7 @@ function PostPage() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!f.title || !f.price || !f.address || files.length === 0) return toast.error("Nhập tiêu đề, giá, địa chỉ và ít nhất 1 ảnh");
+    if (!f.title || !f.price || !f.address || files.length === 0) { toast.error("Nhập tiêu đề, giá, địa chỉ và ít nhất 1 ảnh"); return; }
     setBusy(true);
     try {
       const images = await Promise.all(files.map(upload));
