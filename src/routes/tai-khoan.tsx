@@ -32,7 +32,7 @@ function Account() {
     const { error } = roles.includes(role)
       ? await supabase.from("user_roles").delete().eq("user_id", user.id).eq("role", role)
       : await supabase.from("user_roles").insert({ user_id: user.id, role });
-    if (error) return toast.error("Không cập nhật được vai trò");
+    if (error) { toast.error("Không cập nhật được vai trò"); return; }
     await refreshRoles();
   };
   const opts = [
@@ -42,7 +42,7 @@ function Account() {
   return (
     <div className="mx-auto max-w-4xl space-y-8 px-4 py-10">
       <div>
-        <h1 className="text-4xl font-bold">Xin chào, {user.user_metadata?.full_name ?? user.email}</h1>
+        <h1 className="text-4xl font-bold">Xin chào, {user.user_metadata?.["full_name"] ?? user.email}</h1>
         <p className="mt-1 text-muted-foreground">Chọn vai trò của bạn – có thể chọn cả hai.</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">

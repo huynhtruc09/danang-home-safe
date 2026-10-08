@@ -127,7 +127,7 @@ function Reviews({ listingId }: { listingId: string }) {
   const submit = async () => {
     if (!user) return signIn();
     if (!comment.trim()) return;
-    const { error } = await supabase.from("reviews").insert({ listing_id: listingId, user_id: user.id, rating, comment, author_name: user.user_metadata?.full_name ?? "Người thuê" });
+    const { error } = await supabase.from("reviews").insert({ listing_id: listingId, user_id: user.id, rating, comment, author_name: user.user_metadata?.["full_name"] ?? "Người thuê" });
     if (error) return toast.error("Không gửi được đánh giá");
     setComment("");
     qc.invalidateQueries({ queryKey: ["reviews", listingId] });

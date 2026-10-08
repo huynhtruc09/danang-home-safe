@@ -31,7 +31,7 @@ export function SiteHeader() {
                 <Heart className="size-4" />
                 {ids.size > 0 && <span className="absolute -right-0.5 -top-0.5 grid size-4 place-items-center rounded-full bg-coral text-[10px] text-coral-foreground">{ids.size}</span>}
               </Link>
-              <Link to="/tai-khoan" className="hidden text-sm font-medium sm:block">{user.user_metadata?.full_name ?? user.email}</Link>
+              <Link to="/tai-khoan" className="hidden text-sm font-medium sm:block">{user.user_metadata?.["full_name"] ?? user.email}</Link>
               <Button variant="ghost" size="icon" onClick={signOut} aria-label="Đăng xuất"><LogOut /></Button>
             </>
           ) : (
