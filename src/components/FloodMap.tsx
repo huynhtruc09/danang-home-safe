@@ -1,0 +1,45 @@
+import { MapContainer, TileLayer, Circle, CircleMarker, Popup, LayersControl, LayerGroup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { FLOOD_ZONES, FLOOD_LABEL, floodRiskAt } from "@/lib/flood";
+import type { Listing } from "@/lib/listings";
+import { vnd } from "@/lib/format";
+
+const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
+
+export default function FloodMap({ listings = [], height = 520, center = [16.055, 108.2] as [number, number], zoom = 13 }: {
+  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number;
+}) {
+  return (
+    <MapContainer center={center} zoom={zoom} scrollWheelZoom style={{ height, width: "100%", borderRadius: 16 }}>
+      <TileLayer attribution="&copy; OpenStreetMap" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <LayersControl position="topright">
+        <LayersControl.Overlay checked name="Lớp cảnh báo ngập lụt">
+          <LayerGroup>
+            {FLOOD_ZONES.map((z) => (
+              <Circle key={z.name} center={z.center} radius={z.radius}
+                pathOptions={{ color: HEX[z.level], fillColor: HEX[z.level], fillOpacity: 0.28, weight: 1.5 }}>
+                <Popup><b>{z.name}</b> ({z.district})<br />{FLOOD_LABEL[z.level]}<br /><i>{z.note}</i></Popup>
+              </Circle>
+            ))}
+          </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Nhà / phòng cho thuê">
+          <LayerGroup>
+            {listings.map((l) => {
+              const r = floodRiskAt(l.lat, l.lng);
+              return (
+                <CircleMarker key={l.id} center={[l.lat, l.lng]} radius={8}
+                  pathOptions={{ color: "#fff", weight: 2, fillColor: l.status === "available" ? "#1f5f7a" : "#777", fillOpacity: 1 }}>
+                  <Popup>
+                    <b>{l.title}</b><br />{vnd(l.price)} · {l.status === "available" ? "Còn trống" : "Hết phòng"}<br />
+                    {FLOOD_LABEL[r.level]}<br /><a href={`/phong/${l.id}`}>Xem chi tiết →</a>
+                  </Popup>
+                </CircleMarker>
+              );
+            })}
+          </LayerGroup>
+        </LayersControl.Overlay>
+      </LayersControl>
+    </MapContainer>
+  );
+}
