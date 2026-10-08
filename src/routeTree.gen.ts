@@ -10,11 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BanDoRouteImport } from './routes/ban-do'
+import { Route as DangTinRouteImport } from './routes/dang-tin'
+import { Route as GioHangRouteImport } from './routes/gio-hang'
+import { Route as TaiKhoanRouteImport } from './routes/tai-khoan'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as PhongIdRouteImport } from './routes/phong.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BanDoRoute = BanDoRouteImport.update({
+  id: '/ban-do',
+  path: '/ban-do',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DangTinRoute = DangTinRouteImport.update({
+  id: '/dang-tin',
+  path: '/dang-tin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GioHangRoute = GioHangRouteImport.update({
+  id: '/gio-hang',
+  path: '/gio-hang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaiKhoanRoute = TaiKhoanRouteImport.update({
+  id: '/tai-khoan',
+  path: '/tai-khoan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -22,31 +47,78 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PhongIdRoute = PhongIdRouteImport.update({
+  id: '/phong/$id',
+  path: '/phong/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ban-do': typeof BanDoRoute
+  '/dang-tin': typeof DangTinRoute
+  '/gio-hang': typeof GioHangRoute
+  '/tai-khoan': typeof TaiKhoanRoute
   '/api/chat': typeof ApiChatRoute
+  '/phong/$id': typeof PhongIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ban-do': typeof BanDoRoute
+  '/dang-tin': typeof DangTinRoute
+  '/gio-hang': typeof GioHangRoute
+  '/tai-khoan': typeof TaiKhoanRoute
   '/api/chat': typeof ApiChatRoute
+  '/phong/$id': typeof PhongIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ban-do': typeof BanDoRoute
+  '/dang-tin': typeof DangTinRoute
+  '/gio-hang': typeof GioHangRoute
+  '/tai-khoan': typeof TaiKhoanRoute
   '/api/chat': typeof ApiChatRoute
+  '/phong/$id': typeof PhongIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/ban-do'
+    | '/dang-tin'
+    | '/gio-hang'
+    | '/tai-khoan'
+    | '/api/chat'
+    | '/phong/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/chat'
-  id: '__root__' | '/' | '/api/chat'
+  to:
+    | '/'
+    | '/ban-do'
+    | '/dang-tin'
+    | '/gio-hang'
+    | '/tai-khoan'
+    | '/api/chat'
+    | '/phong/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/ban-do'
+    | '/dang-tin'
+    | '/gio-hang'
+    | '/tai-khoan'
+    | '/api/chat'
+    | '/phong/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BanDoRoute: typeof BanDoRoute
+  DangTinRoute: typeof DangTinRoute
+  GioHangRoute: typeof GioHangRoute
+  TaiKhoanRoute: typeof TaiKhoanRoute
   ApiChatRoute: typeof ApiChatRoute
+  PhongIdRoute: typeof PhongIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +130,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ban-do': {
+      id: '/ban-do'
+      path: '/ban-do'
+      fullPath: '/ban-do'
+      preLoaderRoute: typeof BanDoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dang-tin': {
+      id: '/dang-tin'
+      path: '/dang-tin'
+      fullPath: '/dang-tin'
+      preLoaderRoute: typeof DangTinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gio-hang': {
+      id: '/gio-hang'
+      path: '/gio-hang'
+      fullPath: '/gio-hang'
+      preLoaderRoute: typeof GioHangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tai-khoan': {
+      id: '/tai-khoan'
+      path: '/tai-khoan'
+      fullPath: '/tai-khoan'
+      preLoaderRoute: typeof TaiKhoanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -65,12 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/phong/$id': {
+      id: '/phong/$id'
+      path: '/phong/$id'
+      fullPath: '/phong/$id'
+      preLoaderRoute: typeof PhongIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BanDoRoute: BanDoRoute,
+  DangTinRoute: DangTinRoute,
+  GioHangRoute: GioHangRoute,
+  TaiKhoanRoute: TaiKhoanRoute,
   ApiChatRoute: ApiChatRoute,
+  PhongIdRoute: PhongIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
