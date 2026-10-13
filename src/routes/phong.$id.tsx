@@ -11,6 +11,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Panorama360 } from "@/components/Panorama360";
 import { CostEstimator } from "@/components/CostEstimator";
 import { ClientMap } from "@/components/ClientMap";
+import { ClientNearby } from "@/components/ClientNearby";
+import { ViewingBooking } from "@/components/ViewingBooking";
+import { WeatherPanel } from "@/components/WeatherPanel";
 import { FloodBadge } from "@/components/FloodBadge";
 import { DEAL_LABEL, KIND_LABEL, vnd } from "@/lib/format";
 import { floodRiskAt, FLOOD_LABEL } from "@/lib/flood";
@@ -18,9 +21,9 @@ import { floodRiskAt, FLOOD_LABEL } from "@/lib/flood";
 export const Route = createFileRoute("/phong/$id")({
   head: () => ({
     meta: [
-      { title: "Chi tiết phòng – Trọ Đà Nẵng" },
+      { title: "Chi tiết phòng – DaNang PadFinder" },
       { name: "description", content: "Xem ảnh, 360°, đánh giá, chi phí và mức độ ngập của căn phòng tại Đà Nẵng." },
-      { property: "og:title", content: "Chi tiết phòng – Trọ Đà Nẵng" },
+      { property: "og:title", content: "Chi tiết phòng – DaNang PadFinder" },
       { property: "og:description", content: "Xem 360°, đánh giá người thuê cũ và cảnh báo ngập." },
     ],
   }),
@@ -104,9 +107,19 @@ function Detail() {
         <section className="space-y-3"><h2 className="text-2xl font-bold">Xem toàn cảnh 360°</h2><Panorama360 src={l.panorama_url} /></section>
       )}
 
+      <section className="space-y-3">
+        <h2 className="text-2xl font-bold">Vị trí chính xác, tiện ích & đường đi</h2>
+        <ClientNearby lat={l.lat} lng={l.lng} />
+      </section>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <ViewingBooking l={l} />
+        <WeatherPanel lat={l.lat} lng={l.lng} />
+      </div>
+
       <div className="grid gap-6 lg:grid-cols-2">
         {l.deal === "rent" ? <CostEstimator l={l} /> : <div />}
-        <div><h3 className="mb-3 text-xl font-bold">Vị trí & vùng ngập</h3><ClientMap listings={[l]} center={[l.lat, l.lng]} zoom={15} height={360} /></div>
+        <div><h3 className="mb-3 text-xl font-bold">Vùng ngập quanh nhà</h3><ClientMap listings={[l]} center={[l.lat, l.lng]} zoom={15} height={360} /></div>
       </div>
 
       <Reviews listingId={l.id} />

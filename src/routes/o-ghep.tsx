@@ -12,7 +12,7 @@ import { Switch } from "@/components/ui/switch";
 export const Route = createFileRoute("/o-ghep")({
   head: () => ({
     meta: [
-      { title: "Tìm bạn ở ghép – Trọ Đà Nẵng" },
+      { title: "Tìm bạn ở ghép – DaNang PadFinder" },
       { name: "description", content: "Gợi ý bạn ở ghép hợp nhau theo khu vực, ngân sách và thói quen sinh hoạt." },
       { property: "og:title", content: "Tìm bạn ở ghép thông minh – Đà Nẵng" },
       { property: "og:description", content: "Ghép đôi bạn cùng phòng theo điểm tương thích." },

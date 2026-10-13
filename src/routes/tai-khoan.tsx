@@ -10,9 +10,9 @@ import { ListingCard } from "@/components/ListingCard";
 export const Route = createFileRoute("/tai-khoan")({
   head: () => ({
     meta: [
-      { title: "Tài khoản & vai trò – Trọ Đà Nẵng" },
+      { title: "Tài khoản & vai trò – DaNang PadFinder" },
       { name: "description", content: "Chọn vai trò người cho thuê/bán hoặc người thuê và quản lý tin đăng." },
-      { property: "og:title", content: "Tài khoản – Trọ Đà Nẵng" },
+      { property: "og:title", content: "Tài khoản – DaNang PadFinder" },
       { property: "og:description", content: "Chọn vai trò và quản lý tin đăng của bạn." },
     ],
   }),
