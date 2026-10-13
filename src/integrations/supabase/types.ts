@@ -287,6 +287,42 @@ export type Database = {
         }
         Relationships: []
       }
+      viewings: {
+        Row: {
+          created_at: string
+          id: string
+          listing_id: string
+          note: string | null
+          owner_id: string | null
+          phone: string | null
+          renter_id: string
+          scheduled_at: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          listing_id: string
+          note?: string | null
+          owner_id?: string | null
+          phone?: string | null
+          renter_id: string
+          scheduled_at: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          listing_id?: string
+          note?: string | null
+          owner_id?: string | null
+          phone?: string | null
+          renter_id?: string
+          scheduled_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
