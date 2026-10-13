@@ -18,9 +18,9 @@ import { floodRiskAt, FLOOD_LABEL } from "@/lib/flood";
 export const Route = createFileRoute("/phong/$id")({
   head: () => ({
     meta: [
-      { title: "Chi tiết phòng – Trọ Đà Nẵng" },
+      { title: "Chi tiết phòng – DaNang PadFinder" },
       { name: "description", content: "Xem ảnh, 360°, đánh giá, chi phí và mức độ ngập của căn phòng tại Đà Nẵng." },
-      { property: "og:title", content: "Chi tiết phòng – Trọ Đà Nẵng" },
+      { property: "og:title", content: "Chi tiết phòng – DaNang PadFinder" },
       { property: "og:description", content: "Xem 360°, đánh giá người thuê cũ và cảnh báo ngập." },
     ],
   }),

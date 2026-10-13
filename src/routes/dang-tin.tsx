@@ -15,10 +15,10 @@ import { ClientPicker } from "@/components/ClientPicker";
 export const Route = createFileRoute("/dang-tin")({
   head: () => ({
     meta: [
-      { title: "Đăng tin cho thuê / bán – Trọ Đà Nẵng" },
+      { title: "Đăng tin cho thuê / bán – DaNang PadFinder" },
       { name: "description", content: "Đăng ảnh, mô tả, giá và lưu ý để cho thuê hoặc bán nhà tại Đà Nẵng." },
-      { property: "og:title", content: "Đăng tin – Trọ Đà Nẵng" },
-      { property: "og:description", content: "Đăng phòng trọ, nhà, chung cư lên Trọ Đà Nẵng." },
+      { property: "og:title", content: "Đăng tin – DaNang PadFinder" },
+      { property: "og:description", content: "Đăng phòng trọ, nhà, chung cư lên DaNang PadFinder." },
     ],
   }),
   component: PostPage,

@@ -15,7 +15,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
           <span className="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"><Waves className="size-5" /></span>
-          <span className="font-display text-xl font-bold">Trọ Đà Nẵng</span>
+          <span className="font-display text-xl font-bold">DaNang PadFinder</span>
         </Link>
         <nav className="ml-4 hidden items-center gap-1 lg:flex">
           <Link to="/ban-do" className={nav} activeProps={active}><Map className="size-4" />Bản đồ ngập</Link>

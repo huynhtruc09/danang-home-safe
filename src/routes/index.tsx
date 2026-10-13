@@ -15,9 +15,9 @@ import { floodRiskAt } from "@/lib/flood";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Trọ Đà Nẵng – Phòng trọ, nhà, chung cư & bản đồ ngập" },
+      { title: "DaNang PadFinder – Phòng trọ, nhà, chung cư & bản đồ ngập" },
       { name: "description", content: "Tổng hợp phòng trọ, nhà, chung cư cho thuê và bán tại Đà Nẵng, xem 360°, đánh giá thật, cảnh báo ngập mùa mưa." },
-      { property: "og:title", content: "Trọ Đà Nẵng – Tìm nhà an toàn mùa mưa" },
+      { property: "og:title", content: "DaNang PadFinder – Tìm nhà an toàn mùa mưa" },
       { property: "og:description", content: "Phòng trọ, chung cư Đà Nẵng kèm lớp bản đồ vùng xanh / cam / đỏ ngập lụt." },
     ],
   }),

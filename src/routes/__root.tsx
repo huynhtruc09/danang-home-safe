@@ -55,7 +55,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Trọ Đà Nẵng" },
+      { title: "DaNang PadFinder" },
       { name: "description", content: "Tìm phòng trọ, nhà, chung cư tại Đà Nẵng kèm bản đồ cảnh báo ngập." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -89,7 +89,7 @@ function RootComponent() {
       <AuthProvider>
         <SiteHeader />
         <main className="min-h-[70vh]"><Outlet /></main>
-        <footer className="mt-16 border-t py-8 text-center text-sm text-muted-foreground">© 2026 Trọ Đà Nẵng · Dữ liệu ngập lụt mang tính tham khảo</footer>
+        <footer className="mt-16 border-t py-8 text-center text-sm text-muted-foreground">© 2026 DaNang PadFinder · Dữ liệu ngập lụt mang tính tham khảo</footer>
         <ChatbotWidget />
         <Toaster richColors />
       </AuthProvider>

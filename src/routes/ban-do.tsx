@@ -7,7 +7,7 @@ import { FloodBadge } from "@/components/FloodBadge";
 export const Route = createFileRoute("/ban-do")({
   head: () => ({
     meta: [
-      { title: "Bản đồ cảnh báo ngập lụt Đà Nẵng – Trọ Đà Nẵng" },
+      { title: "Bản đồ cảnh báo ngập lụt Đà Nẵng – DaNang PadFinder" },
       { name: "description", content: "Lớp bản đồ vùng xanh an toàn, vùng cam/đỏ có nguy cơ ngập tại Liên Chiểu, Thanh Khê và các quận Đà Nẵng." },
       { property: "og:title", content: "Bản đồ ngập lụt mùa mưa Đà Nẵng" },
       { property: "og:description", content: "Vùng xanh – cam – đỏ dựa trên các đợt mưa bão lớn." },

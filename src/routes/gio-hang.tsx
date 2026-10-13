@@ -8,9 +8,9 @@ import { vnd } from "@/lib/format";
 export const Route = createFileRoute("/gio-hang")({
   head: () => ({
     meta: [
-      { title: "Giỏ hàng – Trọ Đà Nẵng" },
+      { title: "Giỏ hàng – DaNang PadFinder" },
       { name: "description", content: "Danh sách phòng trọ, nhà, chung cư bạn đã lưu." },
-      { property: "og:title", content: "Giỏ hàng – Trọ Đà Nẵng" },
+      { property: "og:title", content: "Giỏ hàng – DaNang PadFinder" },
       { property: "og:description", content: "Các căn bạn yêu thích tại Đà Nẵng." },
     ],
   }),

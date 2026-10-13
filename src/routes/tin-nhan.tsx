@@ -14,9 +14,9 @@ export const Route = createFileRoute("/tin-nhan")({
   }),
   head: () => ({
     meta: [
-      { title: "Tin nhắn – Trọ Đà Nẵng" },
+      { title: "Tin nhắn – DaNang PadFinder" },
       { name: "description", content: "Trò chuyện trực tiếp với người cho thuê hoặc người bán." },
-      { property: "og:title", content: "Tin nhắn – Trọ Đà Nẵng" },
+      { property: "og:title", content: "Tin nhắn – DaNang PadFinder" },
       { property: "og:description", content: "Nhắn tin với chủ nhà." },
     ],
   }),
