@@ -128,3 +128,7 @@
   background: transparent;
   border: 0;
 }
+.water-station-marker {
+  stroke: var(--primary-foreground);
+  fill: var(--primary);
+}

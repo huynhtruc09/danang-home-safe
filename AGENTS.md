@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep imported water-station snapshots in a browser-safe data module separate from historical flood-risk zones; unverified readings must not imply flood severity or real-time status.

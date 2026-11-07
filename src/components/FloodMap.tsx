@@ -5,11 +5,12 @@ import type { Listing } from "@/lib/listings";
 import { vnd } from "@/lib/format";
 import { LocateControl } from "./LocateControl";
 import { pinIcon } from "./mapPin";
+import { WaterStationMarkers } from "./WaterStationMarkers";
 
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
-export default function FloodMap({ listings = [], height = 520, center = [16.055, 108.2] as [number, number], zoom = 13 }: {
-  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number;
+export default function FloodMap({ listings = [], height = 520, center = [16.055, 108.2] as [number, number], zoom = 13, showWaterStations = false, selectedStationId }: {
+  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number; showWaterStations?: boolean; selectedStationId?: string;
 }) {
   return (
     <MapContainer center={center} zoom={zoom} scrollWheelZoom style={{ height, width: "100%", borderRadius: 16 }}>
@@ -20,7 +21,10 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
         <LayersControl.BaseLayer name="Vệ tinh">
           <TileLayer attribution="Esri" url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
         </LayersControl.BaseLayer>
-        <LayersControl.Overlay checked name="Lớp cảnh báo ngập lụt">
+        {showWaterStations && <LayersControl.Overlay checked name="Trạm mưa ngập Đà Nẵng (file nhập)">
+          <LayerGroup><WaterStationMarkers selectedId={selectedStationId} /></LayerGroup>
+        </LayersControl.Overlay>}
+        <LayersControl.Overlay checked name="Vùng nguy cơ ngập lịch sử (ước lượng)">
           <LayerGroup>
             {FLOOD_ZONES.map((z) => (
               <Circle key={z.name} center={z.center} radius={z.radius}
