@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup, Polyline, LayersControl, LayerGroup } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Polyline, LayersControl, LayerGroup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LocateControl } from "./LocateControl";
+import { pinIcon } from "./mapPin";
 
 type Poi = { id: number; lat: number; lng: number; name: string; cat: string };
 const CATS: Record<string, { label: string; color: string; q: string }> = {
@@ -89,7 +90,7 @@ export default function NearbyMap({ lat, lng }: { lat: number; lng: number }) {
             </LayerGroup>
           </LayersControl.Overlay>
         </LayersControl>
-        <CircleMarker center={[lat, lng]} radius={11} pathOptions={{ color: "#fff", weight: 3, fillColor: "#e06a3c", fillOpacity: 1 }}><Popup>Vị trí chính xác của nhà</Popup></CircleMarker>
+        <Marker position={[lat, lng]} icon={pinIcon("#e06a3c", 34)}><Popup><b>Vị trí chính xác của nhà</b><br />{lat.toFixed(5)}, {lng.toFixed(5)}</Popup></Marker>
         {route && <Polyline positions={route.line} pathOptions={{ color: "#1f5f7a", weight: 5 }} />}
         <LocateControl />
       </MapContainer>

@@ -1,9 +1,10 @@
-import { MapContainer, TileLayer, Circle, CircleMarker, Popup, LayersControl, LayerGroup } from "react-leaflet";
+import { MapContainer, TileLayer, Circle, Marker, Popup, LayersControl, LayerGroup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { FLOOD_ZONES, FLOOD_LABEL, floodRiskAt } from "@/lib/flood";
 import type { Listing } from "@/lib/listings";
 import { vnd } from "@/lib/format";
 import { LocateControl } from "./LocateControl";
+import { pinIcon } from "./mapPin";
 
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
@@ -34,13 +35,13 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
             {listings.map((l) => {
               const r = floodRiskAt(l.lat, l.lng);
               return (
-                <CircleMarker key={l.id} center={[l.lat, l.lng]} radius={8}
-                  pathOptions={{ color: "#fff", weight: 2, fillColor: l.status === "available" ? "#1f5f7a" : "#777", fillOpacity: 1 }}>
+                <Marker key={l.id} position={[l.lat, l.lng]} icon={pinIcon(l.status === "available" ? "#1f5f7a" : "#777", 26)}
+                  zIndexOffset={l.status === "available" ? 1000 : 0}>
                   <Popup>
                     <b>{l.title}</b><br />{vnd(l.price)} · {l.status === "available" ? "Còn trống" : "Hết phòng"}<br />
                     {FLOOD_LABEL[r.level]}<br /><a href={`/phong/${l.id}`}>Xem chi tiết →</a>
                   </Popup>
-                </CircleMarker>
+                </Marker>
               );
             })}
           </LayerGroup>

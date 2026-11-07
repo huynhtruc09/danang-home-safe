@@ -124,3 +124,7 @@
   font-family: var(--font-sans);
   z-index: 0;
 }
+.pad-pin {
+  background: transparent;
+  border: 0;
+}
