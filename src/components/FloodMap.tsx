@@ -11,8 +11,13 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
 }) {
   return (
     <MapContainer center={center} zoom={zoom} scrollWheelZoom style={{ height, width: "100%", borderRadius: 16 }}>
-      <TileLayer attribution="&copy; OpenStreetMap" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LayersControl position="topright">
+        <LayersControl.BaseLayer checked name="Bản đồ đường phố">
+          <TileLayer attribution="&copy; OpenStreetMap" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Vệ tinh">
+          <TileLayer attribution="Esri" url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+        </LayersControl.BaseLayer>
         <LayersControl.Overlay checked name="Lớp cảnh báo ngập lụt">
           <LayerGroup>
             {FLOOD_ZONES.map((z) => (
