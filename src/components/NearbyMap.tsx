@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup, Polyline, LayersControl, LayerGroup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { LocateControl } from "./LocateControl";
 
 type Poi = { id: number; lat: number; lng: number; name: string; cat: string };
 const CATS: Record<string, { label: string; color: string; q: string }> = {
@@ -90,6 +91,7 @@ export default function NearbyMap({ lat, lng }: { lat: number; lng: number }) {
         </LayersControl>
         <CircleMarker center={[lat, lng]} radius={11} pathOptions={{ color: "#fff", weight: 3, fillColor: "#e06a3c", fillOpacity: 1 }}><Popup>Vị trí chính xác của nhà</Popup></CircleMarker>
         {route && <Polyline positions={route.line} pathOptions={{ color: "#1f5f7a", weight: 5 }} />}
+        <LocateControl />
       </MapContainer>
       <div className="text-xs text-muted-foreground">Tọa độ: {lat.toFixed(5)}, {lng.toFixed(5)} · <a className="underline" target="_blank" rel="noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}>Mở chỉ đường trên Google Maps</a></div>
       <div className="flex flex-wrap gap-2">

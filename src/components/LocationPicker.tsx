@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, CircleMarker, Circle, useMapEvents, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { FLOOD_ZONES } from "@/lib/flood";
+import { LocateControl } from "./LocateControl";
 
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
@@ -23,6 +24,7 @@ export default function LocationPicker({ value, onChange }: { value: [number, nu
       {FLOOD_ZONES.map((z) => <Circle key={z.name} center={z.center} radius={z.radius} pathOptions={{ color: HEX[z.level], fillOpacity: 0.2, weight: 1 }} />)}
       <CircleMarker center={value} radius={10} pathOptions={{ color: "#fff", weight: 3, fillColor: "#e06a3c", fillOpacity: 1 }} />
       <Click onChange={onChange} />
+      <LocateControl />
     </MapContainer>
   );
 }

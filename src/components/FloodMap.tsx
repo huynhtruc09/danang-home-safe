@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { FLOOD_ZONES, FLOOD_LABEL, floodRiskAt } from "@/lib/flood";
 import type { Listing } from "@/lib/listings";
 import { vnd } from "@/lib/format";
+import { LocateControl } from "./LocateControl";
 
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
@@ -45,6 +46,7 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
+      <LocateControl />
     </MapContainer>
   );
 }
