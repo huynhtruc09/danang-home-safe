@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { CircleMarker as LeafletCircleMarker } from "leaflet";
 import { CircleMarker, Popup, Tooltip, useMap } from "react-leaflet";
-import { WATER_STATIONS, stationReading } from "@/lib/water-stations";
+import { WATER_STATIONS, stationMeasuredAt, stationReading } from "@/lib/water-stations";
 
 function Station({ station, selected }: { station: (typeof WATER_STATIONS)[number]; selected: boolean }) {
   const map = useMap();
@@ -19,14 +19,16 @@ function Station({ station, selected }: { station: (typeof WATER_STATIONS)[numbe
         <strong>{station.name}</strong><br />
         Mã trạm: {station.code}<br />{station.address}<br />
         {station.latitude.toFixed(6)}, {station.longitude.toFixed(6)}<br />
+        Thời điểm đo: {stationMeasuredAt(station)}<br />
         <strong>Số đo gốc (depth): {stationReading(station)}</strong><br />
-        <small>Chưa xác minh đơn vị, loại trạm và thời điểm đo. Không dùng số đo này để kết luận mức ngập.</small><br />
+        Đơn vị: không có trong file nguồn.<br />
+        <small>Đây là ảnh chụp dữ liệu tĩnh; không dùng số đo này để kết luận mức ngập hiện tại.</small><br />
         <a href={`https://www.google.com/maps/dir/?api=1&destination=${station.latitude},${station.longitude}`} target="_blank" rel="noopener noreferrer">Chỉ đường đến trạm →</a>
       </Popup>
     </CircleMarker>
   );
 }
 
-export function WaterStationMarkers({ selectedId }: { selectedId?: string }) {
+export function WaterStationMarkers({ selectedId }: { selectedId?: string | undefined }) {
   return WATER_STATIONS.map((station) => <Station key={station.id} station={station} selected={station.id === selectedId} />);
 }

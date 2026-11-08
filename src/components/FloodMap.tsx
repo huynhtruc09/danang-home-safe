@@ -1,4 +1,5 @@
-import { MapContainer, TileLayer, Circle, Marker, Popup, LayersControl, LayerGroup } from "react-leaflet";
+import { useEffect } from "react";
+import { MapContainer, TileLayer, Circle, Marker, Popup, LayersControl, LayerGroup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { FLOOD_ZONES, FLOOD_LABEL, floodRiskAt } from "@/lib/flood";
 import type { Listing } from "@/lib/listings";
@@ -6,11 +7,24 @@ import { vnd } from "@/lib/format";
 import { LocateControl } from "./LocateControl";
 import { pinIcon } from "./mapPin";
 import { WaterStationMarkers } from "./WaterStationMarkers";
+import { WATER_STATIONS } from "@/lib/water-stations";
 
 const HEX = { safe: "#2f9e5b", warn: "#e8900c", danger: "#d63a2a" } as const;
 
+function StationOverview({ enabled }: { enabled: boolean }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!enabled) return;
+    map.fitBounds(
+      WATER_STATIONS.map((station) => [station.latitude, station.longitude] as [number, number]),
+      { padding: [24, 24], maxZoom: 13 },
+    );
+  }, [enabled, map]);
+  return null;
+}
+
 export default function FloodMap({ listings = [], height = 520, center = [16.055, 108.2] as [number, number], zoom = 13, showWaterStations = false, selectedStationId }: {
-  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number; showWaterStations?: boolean; selectedStationId?: string;
+  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number; showWaterStations?: boolean; selectedStationId?: string | undefined;
 }) {
   return (
     <MapContainer center={center} zoom={zoom} scrollWheelZoom style={{ height, width: "100%", borderRadius: 16 }}>
@@ -21,9 +35,6 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
         <LayersControl.BaseLayer name="Vệ tinh">
           <TileLayer attribution="Esri" url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
         </LayersControl.BaseLayer>
-        {showWaterStations && <LayersControl.Overlay checked name="Trạm mưa ngập Đà Nẵng (file nhập)">
-          <LayerGroup><WaterStationMarkers selectedId={selectedStationId} /></LayerGroup>
-        </LayersControl.Overlay>}
         <LayersControl.Overlay checked name="Vùng nguy cơ ngập lịch sử (ước lượng)">
           <LayerGroup>
             {FLOOD_ZONES.map((z) => (
@@ -34,6 +45,9 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
             ))}
           </LayerGroup>
         </LayersControl.Overlay>
+        {showWaterStations && <LayersControl.Overlay checked name={`95 trạm quan trắc · dữ liệu tĩnh`}>
+          <LayerGroup><WaterStationMarkers selectedId={selectedStationId} /></LayerGroup>
+        </LayersControl.Overlay>}
         <LayersControl.Overlay checked name="Nhà / phòng cho thuê">
           <LayerGroup>
             {listings.map((l) => {
@@ -51,6 +65,7 @@ export default function FloodMap({ listings = [], height = 520, center = [16.055
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
+      <StationOverview enabled={showWaterStations} />
       <LocateControl />
     </MapContainer>
   );

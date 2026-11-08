@@ -7,7 +7,7 @@ import { WeatherPanel } from "@/components/WeatherPanel";
 import { useState } from "react";
 import { MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WATER_STATIONS, filterWaterStations, stationReading } from "@/lib/water-stations";
+import { WATER_STATIONS, filterWaterStations, stationMeasuredAt, stationReading } from "@/lib/water-stations";
 
 export const Route = createFileRoute("/ban-do")({
   head: () => ({
@@ -33,7 +33,7 @@ function MapPage() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <h1 className="text-4xl font-bold">Bản đồ cảnh báo ngập lụt mùa mưa</h1>
       <p className="mt-2 max-w-3xl text-muted-foreground">Nguồn trạm: file bạn cung cấp từ bản đồ mưa ngập TP Đà Nẵng · {WATER_STATIONS.length} trạm. Dữ liệu tĩnh, chưa kết nối cập nhật trực tiếp.</p>
-      <p className="mt-2 max-w-3xl text-sm text-muted-foreground">File chưa có thời điểm đo, đơn vị của “depth” và chú giải loại trạm. Số đo tại sông, hồ không được coi là độ sâu ngập đường; số 0 không đồng nghĩa khu vực an toàn. Vùng xanh/cam/đỏ bên dưới là ước lượng lịch sử riêng biệt.</p>
+      <p className="mt-2 max-w-3xl text-sm text-muted-foreground">Bản đồ hiển thị đủ {WATER_STATIONS.length} trạm trong file tĩnh. File không có thời điểm đo hay đơn vị của “depth”; số đo tại sông, hồ không được coi là độ sâu ngập đường, và số 0 không đồng nghĩa khu vực an toàn. Vùng xanh/cam/đỏ bên dưới là ước lượng lịch sử riêng biệt.</p>
       <div className="mt-6"><WeatherPanel /></div>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
         <ClientMap listings={data} height={640} showWaterStations selectedStationId={selectedStationId} />
@@ -47,7 +47,7 @@ function MapPage() {
             {stations.map((station) => <li key={station.id}>
               <Button variant="ghost" onClick={() => setSelectedStationId(station.id)} aria-pressed={selectedStationId === station.id} className="h-auto w-full items-start justify-start whitespace-normal py-3 text-left">
                 <MapPin className="mt-1 shrink-0 text-primary" />
-                <span className="min-w-0"><span className="block font-semibold">{station.name}</span><span className="block text-xs text-muted-foreground">{station.district} · {station.code}</span><span className="block text-xs">Số đo gốc: {stationReading(station)}</span></span>
+                <span className="min-w-0"><span className="block font-semibold">{station.name}</span><span className="block text-xs text-muted-foreground">{station.district} · {station.code}</span><span className="block text-xs">Thời điểm đo: {stationMeasuredAt(station)}</span><span className="block text-xs">Số đo gốc (depth): {stationReading(station)} · chưa rõ đơn vị</span></span>
               </Button>
             </li>)}
           </ul>

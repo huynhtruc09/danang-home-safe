@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { WATER_STATIONS, filterWaterStations, stationReading } from "@/lib/water-stations";
+import { WATER_STATIONS, filterWaterStations, stationMeasuredAt, stationReading } from "@/lib/water-stations";
 
 describe("Uploaded Da Nang station snapshot", () => {
   it("preserves all 95 stations and unique identifiers", () => {
@@ -14,6 +14,12 @@ describe("Uploaded Da Nang station snapshot", () => {
     expect(station).toBeDefined();
     if (!station) return;
     expect(stationReading(station)).toBe("-0.09");
+  });
+  it("does not invent a measurement time absent from the imported snapshot", () => {
+    const station = WATER_STATIONS[0];
+    expect(station).toBeDefined();
+    if (!station) return;
+    expect(stationMeasuredAt(station)).toBe("Không có trong file nguồn");
   });
   it("finds a station by accent-insensitive place name and code", () => {
     expect(filterWaterStations("truong dinh").map((station) => station.code)).toContain("431002");
