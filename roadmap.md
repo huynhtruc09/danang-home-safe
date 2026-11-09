@@ -1,0 +1,4 @@
+- [x] Show all 95 imported water stations on the flood map and display readings with source-backed measurement times only.
+- [ ] Add average asking-price summaries by neighborhood and near schools, clearly labeled from current listings.
+- [ ] Add historical flood and rainfall summaries by neighborhood, distinguishing documented history from estimates.
+- [ ] Improve the chatbot's reliability, empathetic tone, and coverage of PadFinder user questions.
