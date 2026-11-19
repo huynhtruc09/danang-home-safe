@@ -1,0 +1,391 @@
+{
+ "source": "Open-Meteo Historical Weather API (ERA5 reanalysis, lưới ~25km)",
+ "fetchedAt": "2026-11-19",
+ "districts": [
+  {
+   "district": "Hải Châu",
+   "lat": 16.0544,
+   "lng": 108.2022,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 2456,
+     "rainySeasonMm": 1845,
+     "maxDayMm": 120,
+     "maxDay": "2020-10-11",
+     "heavyDays": 11
+    },
+    {
+     "year": 2021,
+     "totalMm": 2190,
+     "rainySeasonMm": 1694,
+     "maxDayMm": 113,
+     "maxDay": "2021-12-27",
+     "heavyDays": 6
+    },
+    {
+     "year": 2022,
+     "totalMm": 2316,
+     "rainySeasonMm": 1339,
+     "maxDayMm": 179,
+     "maxDay": "2022-10-14",
+     "heavyDays": 6
+    },
+    {
+     "year": 2023,
+     "totalMm": 2369,
+     "rainySeasonMm": 1673,
+     "maxDayMm": 130,
+     "maxDay": "2023-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2024,
+     "totalMm": 2208,
+     "rainySeasonMm": 1619,
+     "maxDayMm": 155,
+     "maxDay": "2024-10-27",
+     "heavyDays": 7
+    },
+    {
+     "year": 2025,
+     "totalMm": 3153,
+     "rainySeasonMm": 1859,
+     "maxDayMm": 174,
+     "maxDay": "2025-06-12",
+     "heavyDays": 14
+    }
+   ]
+  },
+  {
+   "district": "Thanh Khê",
+   "lat": 16.0645,
+   "lng": 108.188,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 3312,
+     "rainySeasonMm": 2513,
+     "maxDayMm": 151,
+     "maxDay": "2020-10-11",
+     "heavyDays": 17
+    },
+    {
+     "year": 2021,
+     "totalMm": 2496,
+     "rainySeasonMm": 1796,
+     "maxDayMm": 102,
+     "maxDay": "2021-12-27",
+     "heavyDays": 8
+    },
+    {
+     "year": 2022,
+     "totalMm": 2748,
+     "rainySeasonMm": 1478,
+     "maxDayMm": 183,
+     "maxDay": "2022-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2023,
+     "totalMm": 2740,
+     "rainySeasonMm": 1831,
+     "maxDayMm": 168,
+     "maxDay": "2023-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2024,
+     "totalMm": 2519,
+     "rainySeasonMm": 1739,
+     "maxDayMm": 147,
+     "maxDay": "2024-09-18",
+     "heavyDays": 6
+    },
+    {
+     "year": 2025,
+     "totalMm": 3470,
+     "rainySeasonMm": 1973,
+     "maxDayMm": 154,
+     "maxDay": "2025-10-29",
+     "heavyDays": 19
+    }
+   ]
+  },
+  {
+   "district": "Sơn Trà",
+   "lat": 16.086,
+   "lng": 108.244,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 2456,
+     "rainySeasonMm": 1845,
+     "maxDayMm": 120,
+     "maxDay": "2020-10-11",
+     "heavyDays": 11
+    },
+    {
+     "year": 2021,
+     "totalMm": 2190,
+     "rainySeasonMm": 1694,
+     "maxDayMm": 113,
+     "maxDay": "2021-12-27",
+     "heavyDays": 6
+    },
+    {
+     "year": 2022,
+     "totalMm": 2316,
+     "rainySeasonMm": 1339,
+     "maxDayMm": 179,
+     "maxDay": "2022-10-14",
+     "heavyDays": 6
+    },
+    {
+     "year": 2023,
+     "totalMm": 2369,
+     "rainySeasonMm": 1673,
+     "maxDayMm": 130,
+     "maxDay": "2023-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2024,
+     "totalMm": 2208,
+     "rainySeasonMm": 1619,
+     "maxDayMm": 155,
+     "maxDay": "2024-10-27",
+     "heavyDays": 7
+    },
+    {
+     "year": 2025,
+     "totalMm": 3153,
+     "rainySeasonMm": 1859,
+     "maxDayMm": 174,
+     "maxDay": "2025-06-12",
+     "heavyDays": 14
+    }
+   ]
+  },
+  {
+   "district": "Ngũ Hành Sơn",
+   "lat": 16.0,
+   "lng": 108.256,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 2475,
+     "rainySeasonMm": 1879,
+     "maxDayMm": 134,
+     "maxDay": "2020-10-11",
+     "heavyDays": 11
+    },
+    {
+     "year": 2021,
+     "totalMm": 2411,
+     "rainySeasonMm": 1861,
+     "maxDayMm": 104,
+     "maxDay": "2021-10-06",
+     "heavyDays": 9
+    },
+    {
+     "year": 2022,
+     "totalMm": 2580,
+     "rainySeasonMm": 1446,
+     "maxDayMm": 189,
+     "maxDay": "2022-10-14",
+     "heavyDays": 7
+    },
+    {
+     "year": 2023,
+     "totalMm": 2560,
+     "rainySeasonMm": 1751,
+     "maxDayMm": 142,
+     "maxDay": "2023-10-13",
+     "heavyDays": 6
+    },
+    {
+     "year": 2024,
+     "totalMm": 2384,
+     "rainySeasonMm": 1695,
+     "maxDayMm": 138,
+     "maxDay": "2024-10-27",
+     "heavyDays": 5
+    },
+    {
+     "year": 2025,
+     "totalMm": 3264,
+     "rainySeasonMm": 1951,
+     "maxDayMm": 168,
+     "maxDay": "2025-06-12",
+     "heavyDays": 17
+    }
+   ]
+  },
+  {
+   "district": "Liên Chiểu",
+   "lat": 16.075,
+   "lng": 108.15,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 3312,
+     "rainySeasonMm": 2513,
+     "maxDayMm": 151,
+     "maxDay": "2020-10-11",
+     "heavyDays": 17
+    },
+    {
+     "year": 2021,
+     "totalMm": 2496,
+     "rainySeasonMm": 1796,
+     "maxDayMm": 102,
+     "maxDay": "2021-12-27",
+     "heavyDays": 8
+    },
+    {
+     "year": 2022,
+     "totalMm": 2748,
+     "rainySeasonMm": 1478,
+     "maxDayMm": 183,
+     "maxDay": "2022-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2023,
+     "totalMm": 2740,
+     "rainySeasonMm": 1831,
+     "maxDayMm": 168,
+     "maxDay": "2023-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2024,
+     "totalMm": 2519,
+     "rainySeasonMm": 1739,
+     "maxDayMm": 147,
+     "maxDay": "2024-09-18",
+     "heavyDays": 6
+    },
+    {
+     "year": 2025,
+     "totalMm": 3470,
+     "rainySeasonMm": 1973,
+     "maxDayMm": 154,
+     "maxDay": "2025-10-29",
+     "heavyDays": 19
+    }
+   ]
+  },
+  {
+   "district": "Cẩm Lệ",
+   "lat": 16.015,
+   "lng": 108.195,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 2475,
+     "rainySeasonMm": 1879,
+     "maxDayMm": 134,
+     "maxDay": "2020-10-11",
+     "heavyDays": 11
+    },
+    {
+     "year": 2021,
+     "totalMm": 2411,
+     "rainySeasonMm": 1861,
+     "maxDayMm": 104,
+     "maxDay": "2021-10-06",
+     "heavyDays": 9
+    },
+    {
+     "year": 2022,
+     "totalMm": 2580,
+     "rainySeasonMm": 1446,
+     "maxDayMm": 189,
+     "maxDay": "2022-10-14",
+     "heavyDays": 7
+    },
+    {
+     "year": 2023,
+     "totalMm": 2560,
+     "rainySeasonMm": 1751,
+     "maxDayMm": 142,
+     "maxDay": "2023-10-13",
+     "heavyDays": 6
+    },
+    {
+     "year": 2024,
+     "totalMm": 2384,
+     "rainySeasonMm": 1695,
+     "maxDayMm": 138,
+     "maxDay": "2024-10-27",
+     "heavyDays": 5
+    },
+    {
+     "year": 2025,
+     "totalMm": 3264,
+     "rainySeasonMm": 1951,
+     "maxDayMm": 168,
+     "maxDay": "2025-06-12",
+     "heavyDays": 17
+    }
+   ]
+  },
+  {
+   "district": "Hòa Vang",
+   "lat": 15.99,
+   "lng": 108.09,
+   "years": [
+    {
+     "year": 2020,
+     "totalMm": 3629,
+     "rainySeasonMm": 2776,
+     "maxDayMm": 172,
+     "maxDay": "2020-10-11",
+     "heavyDays": 20
+    },
+    {
+     "year": 2021,
+     "totalMm": 2788,
+     "rainySeasonMm": 2008,
+     "maxDayMm": 95,
+     "maxDay": "2021-12-27",
+     "heavyDays": 11
+    },
+    {
+     "year": 2022,
+     "totalMm": 3086,
+     "rainySeasonMm": 1612,
+     "maxDayMm": 184,
+     "maxDay": "2022-10-14",
+     "heavyDays": 8
+    },
+    {
+     "year": 2023,
+     "totalMm": 2924,
+     "rainySeasonMm": 1881,
+     "maxDayMm": 141,
+     "maxDay": "2023-10-14",
+     "heavyDays": 6
+    },
+    {
+     "year": 2024,
+     "totalMm": 2771,
+     "rainySeasonMm": 1865,
+     "maxDayMm": 149,
+     "maxDay": "2024-09-18",
+     "heavyDays": 5
+    },
+    {
+     "year": 2025,
+     "totalMm": 3748,
+     "rainySeasonMm": 2158,
+     "maxDayMm": 179,
+     "maxDay": "2025-10-29",
+     "heavyDays": 17
+    }
+   ]
+  }
+ ]
+}
