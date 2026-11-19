@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep imported water-station snapshots in a browser-safe data module separate from historical flood-risk zones; unverified readings must not imply flood severity or real-time status.
+- Keep profile reads and private listing-media reads owner-scoped; public sharing must use intentionally public data paths.
