@@ -1,5 +1,14 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer, Circle, Marker, Popup, LayersControl, LayerGroup, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Circle,
+  Marker,
+  Popup,
+  LayersControl,
+  LayerGroup,
+  useMap,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { FLOOD_ZONES, FLOOD_LABEL, floodRiskAt } from "@/lib/flood";
 import type { Listing } from "@/lib/listings";
@@ -23,41 +32,99 @@ function StationOverview({ enabled }: { enabled: boolean }) {
   return null;
 }
 
-export default function FloodMap({ listings = [], height = 520, center = [16.055, 108.2] as [number, number], zoom = 13, showWaterStations = false, selectedStationId }: {
-  listings?: Listing[]; height?: number; center?: [number, number]; zoom?: number; showWaterStations?: boolean; selectedStationId?: string | undefined;
+export default function FloodMap({
+  listings = [],
+  height = 520,
+  center = [16.055, 108.2] as [number, number],
+  zoom = 13,
+  showWaterStations = false,
+  selectedStationId,
+}: {
+  listings?: Listing[];
+  height?: number;
+  center?: [number, number];
+  zoom?: number;
+  showWaterStations?: boolean;
+  selectedStationId?: string | undefined;
 }) {
   return (
-    <MapContainer center={center} zoom={zoom} scrollWheelZoom style={{ height, width: "100%", borderRadius: 16 }}>
+    <MapContainer
+      center={center}
+      zoom={zoom}
+      scrollWheelZoom
+      style={{ height, width: "100%", borderRadius: 16 }}
+    >
       <LayersControl position="topright">
-        <LayersControl.BaseLayer checked name="Bản đồ đường phố">
-          <TileLayer attribution="&copy; OpenStreetMap" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <LayersControl.BaseLayer checked name="Bản đồ đường phố (CARTO)">
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+            subdomains="abcd"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Bản đồ OpenStreetMap gốc">
+          <TileLayer
+            attribution="&copy; OpenStreetMap"
+            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            referrerPolicy="origin"
+          />
         </LayersControl.BaseLayer>
         <LayersControl.BaseLayer name="Vệ tinh">
-          <TileLayer attribution="Esri" url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+          <TileLayer
+            attribution="Esri"
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
         </LayersControl.BaseLayer>
         <LayersControl.Overlay checked name="Vùng nguy cơ ngập lịch sử (ước lượng)">
           <LayerGroup>
             {FLOOD_ZONES.map((z) => (
-              <Circle key={z.name} center={z.center} radius={z.radius}
-                pathOptions={{ color: HEX[z.level], fillColor: HEX[z.level], fillOpacity: 0.28, weight: 1.5 }}>
-                <Popup><b>{z.name}</b> ({z.district})<br />{FLOOD_LABEL[z.level]}<br /><i>{z.note}</i></Popup>
+              <Circle
+                key={z.name}
+                center={z.center}
+                radius={z.radius}
+                pathOptions={{
+                  color: HEX[z.level],
+                  fillColor: HEX[z.level],
+                  fillOpacity: 0.28,
+                  weight: 1.5,
+                }}
+              >
+                <Popup>
+                  <b>{z.name}</b> ({z.district})<br />
+                  {FLOOD_LABEL[z.level]}
+                  <br />
+                  <i>{z.note}</i>
+                </Popup>
               </Circle>
             ))}
           </LayerGroup>
         </LayersControl.Overlay>
-        {showWaterStations && <LayersControl.Overlay checked name={`95 trạm quan trắc · dữ liệu tĩnh`}>
-          <LayerGroup><WaterStationMarkers selectedId={selectedStationId} /></LayerGroup>
-        </LayersControl.Overlay>}
+        {showWaterStations && (
+          <LayersControl.Overlay checked name={`95 trạm quan trắc · dữ liệu tĩnh`}>
+            <LayerGroup>
+              <WaterStationMarkers selectedId={selectedStationId} />
+            </LayerGroup>
+          </LayersControl.Overlay>
+        )}
         <LayersControl.Overlay checked name="Nhà / phòng cho thuê">
           <LayerGroup>
             {listings.map((l) => {
               const r = floodRiskAt(l.lat, l.lng);
               return (
-                <Marker key={l.id} position={[l.lat, l.lng]} icon={pinIcon(l.status === "available" ? "#1f5f7a" : "#777", 26)}
-                  zIndexOffset={l.status === "available" ? 1000 : 0}>
+                <Marker
+                  key={l.id}
+                  position={[l.lat, l.lng]}
+                  icon={pinIcon(l.status === "available" ? "#1f5f7a" : "#777", 26)}
+                  zIndexOffset={l.status === "available" ? 1000 : 0}
+                >
                   <Popup>
-                    <b>{l.title}</b><br />{vnd(l.price)} · {l.status === "available" ? "Còn trống" : "Hết phòng"}<br />
-                    {FLOOD_LABEL[r.level]}<br /><a href={`/phong/${l.id}`}>Xem chi tiết →</a>
+                    <b>{l.title}</b>
+                    <br />
+                    {vnd(l.price)} · {l.status === "available" ? "Còn trống" : "Hết phòng"}
+                    <br />
+                    {FLOOD_LABEL[r.level]}
+                    <br />
+                    <a href={`/phong/${l.id}`}>Xem chi tiết →</a>
                   </Popup>
                 </Marker>
               );
