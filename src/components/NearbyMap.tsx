@@ -147,18 +147,10 @@ export default function NearbyMap({ lat, lng }: { lat: number; lng: number }) {
     <div className="space-y-3">
       <MapContainer center={[lat, lng]} zoom={15} style={{ height: 420, borderRadius: 16 }}>
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="Bản đồ đường phố (CARTO)">
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-              url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-              subdomains="abcd"
-            />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Bản đồ OpenStreetMap gốc">
+          <LayersControl.BaseLayer checked name="Bản đồ đường phố">
             <TileLayer
               attribution="&copy; OpenStreetMap"
-              url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-              referrerPolicy="origin"
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="Vệ tinh">
