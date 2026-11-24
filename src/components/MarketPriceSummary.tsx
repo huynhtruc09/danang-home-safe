@@ -71,7 +71,7 @@ export function MarketPriceSummary({
             {syncText && <span className="font-normal opacity-80">· đồng bộ lúc {syncText}</span>}
           </div>
           <h2 id="market-prices-title" className="mt-2 text-2xl font-bold sm:text-3xl">
-            Bảng giá phòng tham khảo theo khu vực (Chống đôn giá)
+            Bảng giá phòng tham khảo theo khu vực
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             Tự động tổng hợp trực tiếp từ <b>{totalActive} tin đang mở</b> trên hệ thống để sinh
