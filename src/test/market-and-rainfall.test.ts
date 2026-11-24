@@ -29,39 +29,47 @@ describe("Market asking price summary", () => {
   const sampleListings = [
     {
       district: "Liên Chiểu",
+      kind: "tro",
       deal: "rent",
       price: 2_200_000,
+      area_m2: 22,
       status: "available",
       lat: 16.0738,
       lng: 108.1499,
     },
     {
       district: "Liên Chiểu",
+      kind: "tro",
       deal: "rent",
       price: 1_800_000,
+      area_m2: 18,
       status: "available",
       lat: 16.0612,
       lng: 108.1702,
     },
     {
       district: "Thanh Khê",
+      kind: "tro",
       deal: "rent",
       price: 1_500_000,
+      area_m2: 16,
       status: "rented",
       lat: 16.066,
       lng: 108.1885,
     },
     {
       district: "Cẩm Lệ",
+      kind: "nha",
       deal: "sale",
       price: 4_900_000_000,
+      area_m2: 100,
       status: "available",
       lat: 16.001,
       lng: 108.219,
     },
   ];
 
-  it("separates rent and sale averages and excludes rented listings", () => {
+  it("separates student room rent, overall rent, and sale averages and excludes rented listings", () => {
     const districts = summarizeDistrictAskingPrices(sampleListings);
     const lienChieu = districts.find((d) => d.district === "Liên Chiểu");
     const camLe = districts.find((d) => d.district === "Cẩm Lệ");
@@ -72,11 +80,18 @@ describe("Market asking price summary", () => {
       count: 2,
       minimum: 1_800_000,
       maximum: 2_200_000,
+      averagePerM2: 100_000,
     });
+    expect(lienChieu?.studentRoomRent.average).toBe(2_000_000);
     expect(lienChieu?.sale.average).toBeNull();
     expect(camLe?.sale.average).toBe(4_900_000_000);
     expect(camLe?.rent.average).toBeNull();
     expect(thanhKhe).toBeUndefined();
+  });
+
+  it("can return all 7 districts for the realtime regional table", () => {
+    const allDistricts = summarizeDistrictAskingPrices(sampleListings, true);
+    expect(allDistricts.map((d) => d.district)).toEqual(DISTRICTS);
   });
 
   it("summarizes active rental listings within 3 km around the 4 universities", () => {
@@ -85,6 +100,7 @@ describe("Market asking price summary", () => {
     const bachKhoa = schools.find((s) => s.school === "ĐH Bách khoa Đà Nẵng");
     expect(bachKhoa?.count).toBe(2);
     expect(bachKhoa?.average).toBe(2_000_000);
+    expect(bachKhoa?.studentRoomAverage).toBe(2_000_000);
   });
 });
 

@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { data = [], isLoading } = useListings();
+  const { data = [], isLoading, lastSyncedAt } = useListings();
   const { user, signIn } = useAuth();
   const cart = useCart(user?.id);
   const [q, setQ] = useState("");
@@ -164,7 +164,12 @@ function Index() {
           </div>
         </div>
 
-        <MarketPriceSummary listings={data} />
+        <MarketPriceSummary
+          listings={data}
+          lastSyncedAt={lastSyncedAt}
+          selectedDistrict={district}
+          onSelectDistrict={setDistrict}
+        />
       </section>
     </div>
   );
