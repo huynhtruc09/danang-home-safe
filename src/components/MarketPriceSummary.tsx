@@ -40,9 +40,9 @@ export function MarketPriceSummary({
   onSelectDistrict,
 }: {
   listings: Listing[];
-  lastSyncedAt?: Date;
-  selectedDistrict?: string;
-  onSelectDistrict?: (district: string) => void;
+  lastSyncedAt?: Date | undefined;
+  selectedDistrict?: string | undefined;
+  onSelectDistrict?: ((district: string) => void) | undefined;
 }) {
   const districts = summarizeDistrictAskingPrices(listings, true);
   const schools = summarizeSchoolAreaAskingPrices(listings);

@@ -32,11 +32,16 @@ export interface SchoolMarketSummary extends AskingPriceSummary {
 }
 
 type MarketListingInput = Pick<Listing, "district" | "deal" | "price" | "status"> & {
-  kind?: string;
-  area_m2?: number;
+  kind?: string | undefined;
+  area_m2?: number | undefined;
 };
 
-function summarize(items: { price: number; area_m2?: number }[]): AskingPriceSummary {
+type PriceAreaItem = {
+  price: number;
+  area_m2?: number | undefined;
+};
+
+function summarize(items: PriceAreaItem[]): AskingPriceSummary {
   if (items.length === 0) {
     return { average: null, count: 0, minimum: null, maximum: null, averagePerM2: null };
   }
@@ -76,9 +81,9 @@ export function summarizeDistrictAskingPrices(
   const districts = new Map<
     string,
     {
-      rent: { price: number; area_m2?: number }[];
-      studentRoomRent: { price: number; area_m2?: number }[];
-      sale: { price: number; area_m2?: number }[];
+      rent: PriceAreaItem[];
+      studentRoomRent: PriceAreaItem[];
+      sale: PriceAreaItem[];
     }
   >();
 
@@ -120,8 +125,8 @@ export function summarizeDistrictAskingPrices(
 
 export function summarizeSchoolAreaAskingPrices(
   listings: (Pick<Listing, "lat" | "lng" | "deal" | "price" | "status"> & {
-    kind?: string;
-    area_m2?: number;
+    kind?: string | undefined;
+    area_m2?: number | undefined;
   })[],
   radiusKm = 3,
 ): SchoolMarketSummary[] {
